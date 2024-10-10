@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .circle-status-container {
+            display: flex; /* Alinea los elementos en línea */
+            align-items: center; /* Alinea verticalmente en el centro */
+        }
+
+        .circle-status-green {
+            width: 15px; /* Ajusta el tamaño del círculo según sea necesario */
+            height: 15px; /* Ajusta el tamaño del círculo según sea necesario */
+            background-color: green; /* Color del círculo */
+            border-radius: 50%; /* Hace que el span sea redondo */
+            margin-right: 5px; /* Espacio entre el círculo y el texto */
+        }
+
+        .button-status-container {
+            margin-top: 10px; /* Espacio entre la línea de texto y el botón */
+            display: flex; /* Si deseas centrar el botón */
+            justify-content: flex-start; /* Cambia esto según sea necesario */
+        }
+    </style>
+</head>
+<body>
+    <div class="circle-status-container">
+        <span class="circle-status-green"></span>
+        <span class="text-status">Papa</span>
+    </div>
+    <div class="button-status-container">
+        <button>Tu Botón</button>
+    </div>
+</body>
+</html>

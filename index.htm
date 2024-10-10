@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insure Play 2.0</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza el CSS -->
+</head> 
+
+<header>
+    <!-- Espacio para el logo -->
+    <img src="logo.png" alt="Logo Insurance Play">
+    
+    <!-- Título de la cabecera -->
+    <div class="header-title">Insure Play 2.0 - Tu plataforma de Seguros Digitales</div>
+
+    <!-- Botón de Zona Privada -->
+    <button id="buttonZonaPrivada" class="private-zone-btn" style="display: none;" onclick="openPrivateZone()">Zona Privada</button>
+
+    <!-- Sistema de puntos simulado en la cuenta -->
+    <div class="points-account" id="points-display" style="display: none;">
+        <p>Bienvenido, <strong>Juan Diego</strong></p>
+        <div class="medal">
+            <img src="platino.jpg" alt="Medalla de Plata">
+            <span>Nivel: Platino</span>
+        </div>
+        <p>Puntos disponibles: <strong id="points">6000</strong></p>
+    </div>
+</header>
+
+
+
+<!-- Div del popup -->
+    <div id="comparisonPopup" class="modalpopup">
+        <div class="modal-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>Comparación de Seguros</h2>
+            
+            <!-- Tabla de comparación de seguros -->
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>Aseguradora</th>
+                        <th>Cobertura</th>
+						<th>Red de Hospitales</th>
+                        <th>Precio Mensual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="radio" name="seguro" value="aseguradora1"></td>
+                        <td>Aseguradora 1</td>
+                        <td>Cobertura Básica</td>
+                        <td>100 hospitales</td>
+                        <td>$20</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="seguro" value="aseguradora2"></td>
+                        <td>Aseguradora 2</td>
+                        <td>Cobertura Completa</td>
+                        <td>80 hospitales</td>
+                        <td>$35</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="seguro" value="aseguradora3"></td>
+                        <td>Aseguradora 3</td>
+                        <td>Cobertura Premium</td>
+                        <td>120 hospitales</td>
+                        <td>$50</td>
+                    </tr>
+                </tbody>
+            </table>
+			<button id="buttonCotizar" onclick="cotizar()" class="chat-button">Cotizar Seguro</button>
+        </div>
+    </div>
+	
+
+<div class="container">
+    <!-- Formulario de Ingreso de DNI y Aceptación de Términos -->
+    <div class="login-form" id="login-form">
+        <h2>InsurePlay 2.0 - Acceso</h2>
+        <label for="dni">Ingresa tu DNI:</label>
+        <input type="text" id="dni" name="dni" placeholder="DNI">
+		<!-- Nueva casilla de texto para contar más cosas -->
+		<label for="additional-info">Cuéntanos más sobre ti (hobbies, rutina, intereses, diversión, planes):</label>
+		<textarea id="additional-info" rows="8" cols="50" name="additional-info" placeholder="Anímate a contarnos sobre tus hobbies, tu rutina diaria, tus intereses, cómo te diviertes, cuáles son tus planes, tienes mascotas?..."></textarea>
+ 
+		<!-- Botón para activar el micrófono -->
+        <button id="microphone-btn">🎤 Hablar</button>
+        <div>
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">Acepto los términos y condiciones y el tratamiento de mis datos personales</label>
+        </div>
+
+        <button onclick="showMarketplace()" id="continueBtn">Ingresar</button>
+    </div>
+
+    <!-- Barra de carga -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+        <p>Procesando...</p>
+    </div>
+
+    <!-- Marketplace de Pólizas -->
+    <div id="marketplace-section" style="display: none;">
+        <h2>Pólizas de Seguros</h2>
+        <p class="info-message" id="info-message"></p>
+        <div class="section marketplace">
+            <div class="card">
+                <img src="salud.jpg" alt="Seguro de Salud">
+                <h3>Seguro de Salud</h3>
+                <p>Descripción del seguro de salud.</p>
+                <button onclick="showOptionsModalSalud()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="vida.jpg" alt="Seguro de Vida">
+                <h3>Seguro de Vida</h3>
+                <p>Descripción del seguro de vida.</p>
+                <button onclick="showOptionsModalVida()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="viajes.jpg" alt="Seguro de Viajes">
+                <h3>Seguro de Viajes</h3>
+                <p>Descripción del seguro de viajes.</p>
+                <button onclick="showOptionsModalViajes()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="fiestas.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Fiestas</h3>
+                <p>Descripción del seguro de fiestas.</p>
+                <button onclick="showOptionsModalFiestas()">Saber más...</button>
+            </div>
+			<div class="card">
+                <img src="extremos.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Deportes Extremos</h3>
+                <p>Descripción de deportes extremos.</p>
+                <button onclick="showOptionsModalExtreme()">Saber más...</button>
+            </div>
+			<div class="card">
+                <img src="mascotas.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Mascotas</h3>
+                <p>Descripción de Seguro de Mascotas.</p>
+                <button onclick="showOptionsModalMascotas()">Saber más...</button>
+            </div>
+        </div>
+		<!-- Div compacto del comparador de seguros -->
+		<div class="insurance-comparison-container">
+			<img src="comparador.jpg" alt="Comparar Seguros" class="comparison-image">
+			<h3 class="comparison-title">Comparador de Seguros</h3>
+			<button id="openPopup" class="comparison-button">Abrir Comparador</button>
+		</div>
+		<div class="fun-block">
+		<div class="fun-option">
+			<img src="colaboracion.jpg" alt="Opción 1">
+			<h3>Solicita colaboración</h3>
+			<p>Solicita colaoración para contratar pólizas con todos tus amigos</p>
+			<button>Solicitar</button>
+		</div>
+		<div class="fun-option">
+			<img src="microlearning2.png" alt="Opción 2">
+			<h3>Microlearning</h3>
+			<p>Está listo para el reto de preguntas y respuestas que te den 10,000 puntos???</p>
+			<button>Iniciar</button>
+		</div>
+		</div>
+        <h2>Cupones y Descuentos</h2>
+        <div class="section discounts">
+            <div class="card">
+                <h3>Cupón de Descuento</h3>
+                <p>Descuento del 10% en tu próxima compra.</p>
+                <button onclick="redeemCoupon('DESCUENTO10')">Canjear Cupón</button>
+            </div>
+            <div class="card">
+                <h3>Cupón de Recomendación</h3>
+                <p>Recomienda y gana un descuento del 15%.</p>
+                <button onclick="redeemCoupon('RECOMENDA15')">Canjear Cupón</button>
+            </div>
+        </div>
+    </div>
+
+	<!-- Panel Social de Amigos Conectados -->
+	<div class="social" id="social-panel">
+    <h3>Contactos Conectados</h3>
+	<div class="friend">
+        <span class="status-circle-green"></span>
+		<span>Papá</span>
+    </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Solicitar a papá colaboración para póliza</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mamá</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Sebastián</span>
+    </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Sebastián te ha solicitado colaborar en el seguro de su viaje a Colombia</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mario</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Alejandro</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Lucero</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Milagros</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Miguel</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Vanessa</span>
+    </div>
+	</div>
+</div>
+<!-- Sección de Chat -->
+<div id="chat" class="chat-container">
+    <div class="chat-header">Chatea con un Broker</div>
+    <div class="chat-body" id="chat-body">
+        <p><strong>Asesor:</strong> Hola, ¿en qué puedo ayudarte hoy?</p>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="chat-message" placeholder="Escribe tu mensaje...">
+        <button id="send-message">Enviar</button>
+    </div>
+</div>
+
+<!-- Modal Microlearning Structure -->
+<div id="loadingModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="loadingImage" src="microlearning.png" alt="Cargando..." />
+    <h2 id="modalText" class="modal-text">¡Prepárate para el reto del Insurance Microlearning, termina el curso y gana 10,000 puntos!</h2>
+  </div>
+</div>
+<!-- Modal Seguro de Salud -->
+<div id="optionsModalSalud" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Salud</h2>
+
+        <!-- Panel Informativo sobre Cobertura Salud -->
+        <div class="info-panel">
+            <h3>Cobertura General del mejor seguro de Salud para tí</h3>
+            <p>A continuación se muestra una breve descripción de la cobertura general:</p>
+            <p>Este seguro ofrece protección ante una variedad de situaciones, incluyendo:</p>
+            <ul>
+                <li>Atención médica de emergencia.</li>
+                <li>Consultas y tratamientos médicos.</li>
+                <li>Asistencia en caso de accidentes.</li>
+                <li>Cobertura de gastos hospitalarios.</li>
+                <li>Protección financiera para ti y tu familia.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+        </ul>
+        <button id="chatButton" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+</div>
+<!-- Modal Seguro de Vida -->
+<div id="optionsModalVida" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Vida</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Vida -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Vida</h3>
+            <p>Este seguro proporciona protección financiera para tus seres queridos en caso de que algo inesperado suceda. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por fallecimiento.</li>
+                <li>Beneficios por invalidez total o permanente.</li>
+                <li>Cobertura de gastos funerarios.</li>
+                <li>Opciones de ahorro y acumulación de capital.</li>
+                <li>Asesoría en planificación patrimonial.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonLife" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+</div>
+
+<!-- Modal Seguro de Viajes -->
+<div id="optionsModalViajes" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Viajes</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Viajes -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Viajes</h3>
+            <p>Este seguro está diseñado para proporcionarte tranquilidad durante tus viajes. La cobertura incluye:</p>
+            <ul>
+                <li>Asistencia médica en el extranjero.</li>
+                <li>Indemnización por cancelación de viaje.</li>
+                <li>Protección de equipaje perdido o robado.</li>
+                <li>Responsabilidad civil en el extranjero.</li>
+                <li>Evacuación médica de emergencia.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonViajes" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+</div>
+
+<!-- Modal Seguro de Fiestas -->
+<div id="optionsModalFiestas" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Fiestas</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Fiestas -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Fiestas</h3>
+            <p>Este seguro está diseñado para protegerte durante tus eventos y celebraciones. La cobertura incluye:</p>
+            <ul>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Cobertura de accidentes personales para los asistentes.</li>
+                <li>Protección contra cancelación o reprogramación del evento.</li>
+                <li>Cobertura de daño a la propiedad alquilada.</li>
+                <li>Recojo por chofer en caso de intoxicación.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonFiestas" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+</div>
+
+<!-- Modal Seguro de Deportes Extremos -->
+<div id="optionsModalExtreme" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Deportes Extremos</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Deportes Extremos -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Deportes Extremos</h3>
+            <p>Este seguro está diseñado para brindarte protección durante la práctica de deportes extremos. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por lesiones accidentales durante la actividad.</li>
+                <li>Asistencia médica y evacuación en caso de emergencia.</li>
+                <li>Cobertura de equipo deportivo perdido o dañado.</li>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Protección en actividades como escalada, paracaidismo, surf, entre otros.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonDeportesExtremos" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+</div>
+<!-- Modal Seguro de Mascotas -->
+<div id="optionsModalMascotas" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Deportes Extremos</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Mascotas -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Mascotas</h3>
+            <p>Este seguro está diseñado para proteger a tu mascota en caso de incidentes imprevistos. La cobertura incluye:</p>
+            <ul>
+                <li>Consultas veterinarias de emergencia.</li>
+                <li>Cobertura de tratamientos médicos.</li>
+                <li>Cirugías y hospitalización.</li>
+                <li>Medicamentos recetados.</li>
+                <li>Cobertura por extravío o robo de la mascota.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonMascotas" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
+    </div>
+
+</div>
+<!-- Modal -->
+<div id="customModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <div id="customProgressContainer" class="custom-progress-container">
+            <div id="customProgress" class="custom-progress"></div>
+        </div>
+
+        <div class="custom-modal-step" id="step1">
+            <h2>Información Comercial del Seguro</h2>
+            <p>
+                Este seguro ofrece una cobertura integral que incluye:
+                <ul>
+                    <li>Protección contra accidentes.</li>
+                    <li>Asistencia médica de emergencia.</li>
+                    <li>Responsabilidad civil.</li>
+                </ul>
+                Condiciones generales:
+                <ul>
+                    <li>Edad mínima: 18 años.</li>
+                    <li>Edad máxima: 65 años.</li>
+                    <li>Exclusiones aplicables: enfermedades preexistentes.</li>
+                </ul>
+            </p>
+            <button class="custom-button" onclick="customNextStep()">Siguiente</button>
+        </div>
+
+        <div class="custom-modal-step" id="step2" style="display:none;">
+            <h2>Resumen del Seguro</h2>
+            <p>Aquí va el resumen del seguro contratado:</p>
+            <ul>
+                <li><strong>Tipo de Seguro:</strong> Seguro Integral</li>
+                <li><strong>Cobertura:</strong> Hasta $100,000</li>
+                <li><strong>Prima Mensual:</strong> $50</li>
+            </ul>
+            <button class="custom-button" id="digitalSignatureButton" onclick="showDigitalSignature()">Firmar Digitalmente</button>
+            <div id="signatureSection" style="display:none;">
+                <img src="firma.jpg" alt="Firma Digital" />
+                <button class="custom-button" onclick="customNextStep()">Siguiente</button>
+            </div>
+        </div>
+
+        <div class="custom-modal-step" id="step3" style="display:none;">
+            <h2>Información de Pago</h2>
+            <p>Aquí va la información del precio e impuestos:</p>
+            <p><strong>Precio Total:</strong> $50 (incluye impuestos)</p>
+            <form id="paymentForm">
+                <label for="cardNumber">Número de Tarjeta:</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required />
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="123" required />
+
+                <label for="expirationDate">Fecha de Expiración:</label>
+                <input type="text" id="expirationDate" placeholder="MM/AA" required />
+
+                <div>
+                    <label>
+                        <input type="radio" name="cardType" value="Visa" required />
+                        <img src="visa_logo.png" alt="Visa" class="card-logo" />
+                    </label>
+                    <label>
+                        <input type="radio" name="cardType" value="MasterCard" required />
+                        <img src="mastercard_logo.png" alt="MasterCard" class="card-logo" />
+                    </label>
+                    <label>
+                        <input type="radio" name="cardType" value="Diners" required />
+                        <img src="diners_logo.png" alt="Diners" class="card-logo" />
+                    </label>
+                </div>
+
+                <button type="submit" class="custom-button">Pagar</button>
+                <label>
+                    <input type="checkbox" /> Autorizo que registren esta tarjeta para que hagan los cobros de mi póliza de manera recurrente.
+                </label>
+            </form>
+        </div>
+
+        <button class="custom-button" onclick="closeCustomModal()">Cerrar</button>
+    </div>
+</div>
+
+<div class="social-media">
+    <h2>Sigue a nuestros influencers en tus redes sociales</h2>
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank" class="icon facebook" title="Facebook">
+            <img src="facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="icon instagram" title="Instagram">
+            <img src="instagram.jpg" alt="Instagram" />
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="icon twitter" title="Twitter">
+            <img src="twitter.png" alt="Twitter" />
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" class="icon tiktok" title="TikTok">
+            <img src="tiktok.png" alt="TikTok" />
+        </a>
+    </div>
+	</div>
+
+<!-- Pie de Página -->
+<footer>
+    <p>&copy; 2024 Insure Play. Todos los derechos reservados.</p>
+</footer>
+<script src="script.js"></script> <!-- Enlaza el JavaScript -->
+</body>
+</html>
