@@ -796,7 +796,7 @@
     background-color: #ff3333;
 }
 
-.message-excluded-service {
+.message-excluded {
     font-size: 16px;
     font-weight: bold;
     color: #0066cc; /* Color azul base */
@@ -825,4 +825,49 @@
 
 .coverage-excluded h2 {
     color: red; /* Título en rojo */
+}
+
+.options-list {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9; /* Color de fondo suave */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+.options-list h4 {
+    margin-bottom: 10px;
+    font-size: 1.5em; /* Tamaño del título */
+    color: #333; /* Color del texto */
+}
+
+.microseguros-options {
+    list-style-type: none; /* Elimina el estilo de lista */
+    padding: 0; /* Elimina padding por defecto */
+}
+
+.microseguros-options li {
+    display: flex; /* Utiliza flexbox para alineación */
+    justify-content: space-between; /* Espacio entre texto y botón */
+    align-items: center; /* Centrar verticalmente */
+    padding: 10px 0; /* Espaciado vertical */
+    border-bottom: 1px solid #ddd; /* Línea separadora */
+}
+
+.microseguros-options li:last-child {
+    border-bottom: none; /* Elimina la línea en el último elemento */
+}
+
+.info-button {
+    background-color: #007bff; /* Color del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados en el botón */
+    padding: 5px 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.info-button:hover {
+    background-color: #0056b3; /* Color al pasar el ratón */
 }
