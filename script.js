@@ -333,3 +333,81 @@ function openPrivateZone() {
     // Aquí puedes definir la lógica para abrir el popup o redirigir a la nueva página
    window.open('zonaprivada.htm', 'MiZonaPrivada', 'width=600,height=600,resizable=yes,scrollbars=yes');
 }
+
+
+//funcion para servicios adicionales a seguros
+document.getElementById("add-extra-services").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const messageDiv = document.getElementById("messageSalud");
+    
+    if (checkboxes.length === 0) {
+        messageDiv.textContent = "No has seleccionado ningún servicio.";
+    } else {
+        messageDiv.textContent = "Se agregaron los servicios seleccionados.";
+    }
+});
+
+document.getElementById("add-extra-services-life").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const selectedServices = Array.from(checkboxes).map(checkbox => checkbox.value);
+    
+    const message = document.getElementById("messageVida");
+    
+    if (selectedServices.length > 0) {
+        message.innerHTML = `Se agregaron los servicios seleccionados.`;
+        message.style.color = "blue"; // Cambiar el color a azul
+    } else {
+        message.innerHTML = "No has seleccionado ningún servicio.";
+        message.style.color = "blue"; // Cambiar el color a azul
+    }
+});
+ 
+document.getElementById("add-extra-services-travel").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const messageDiv = document.getElementById("messageViajes");
+    
+    if (checkboxes.length === 0) {
+        messageDiv.textContent = "No has seleccionado ningún servicio.";
+    } else {
+        messageDiv.textContent = "Se agregaron los servicios seleccionados.";
+    }
+});
+
+document.getElementById("add-extra-services-parties").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const messageDiv = document.getElementById("messageFiestas");
+    
+    if (checkboxes.length === 0) {
+        messageDiv.textContent = "No has seleccionado ningún servicio.";
+    } else {
+        messageDiv.textContent = "Se agregaron los servicios seleccionados.";
+    }
+});
+
+document.getElementById("add-extra-services-extreme").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const messageDiv = document.getElementById("messageExtreme");
+    
+    if (checkboxes.length === 0) {
+        messageDiv.textContent = "No has seleccionado ningún servicio.";
+    } else {
+        messageDiv.textContent = "Se agregaron los servicios seleccionados.";
+    }
+});
+
+document.getElementById("add-extra-services-mascotas").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll('input[name="excluded_services"]:checked');
+    const messageDiv = document.getElementById("messageMascotas");
+    
+    if (checkboxes.length === 0) {
+        messageDiv.textContent = "No has seleccionado ningún servicio.";
+    } else {
+        messageDiv.textContent = "Se agregaron los servicios seleccionados.";
+    }
+});
+
+function showDetailsMicroseguros() {
+	
+ alert("¡Un Broker se contactará contigo para explicarte a detalle el microseguros seleccionado!");
+ 
+}

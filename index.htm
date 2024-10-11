@@ -137,12 +137,42 @@
                 <p>Descripción de deportes extremos.</p>
                 <button onclick="showOptionsModalExtreme()">Saber más...</button>
             </div>
-			<div class="card">
+			<!-- Nuevo div para Microseguros -->
+            <div class="card">
                 <img src="mascotas.jpg" alt="Seguro de Fiestas">
                 <h3>Seguro de Mascotas</h3>
                 <p>Descripción de Seguro de Mascotas.</p>
                 <button onclick="showOptionsModalMascotas()">Saber más...</button>
             </div>
+			<div class="card">
+			<img src="microseguros.jpg" alt="Microseguros">
+			<h3>Microseguros</h3>
+			<p>Protección básica para situaciones específicas y en cortos periodos de tiempo.</p>
+
+			<!-- Opciones de Microseguros -->
+			<div class="options-list">
+				<h4>Opciones de Microseguros:</h4>
+				<ul>
+					<li>
+						<span>Seguro de Salida a Campo para Estudiantes</span>
+						<button onclick="showDetailsMicroseguros()">Saber más</button>
+					</li>
+					<li>
+						<span>Seguro para actividades recreativas y deportivas.</span>
+						<button onclick="showDetailsMicroseguros()">Saber más</button>
+					</li>
+					<li>
+						<span>Protección básica para viajes cortos</span>
+						<button onclick="showDetailsMicroseguros()">Saber más</button>
+					</li>
+					<li>
+						<span>Asistencia médica básica durante el evento.</span>
+						<button onclick="showDetailsMicroseguros()">Saber más</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+
         </div>
 		<!-- Div compacto del comparador de seguros -->
 		<div class="insurance-comparison-container">
@@ -250,7 +280,7 @@
 
         <!-- Panel Informativo sobre Cobertura Salud -->
         <div class="info-panel">
-            <h3>Cobertura General del mejor seguro de Salud para tí</h3>
+            <h3>Cobertura General del mejor seguro de Salud para ti</h3>
             <p>A continuación se muestra una breve descripción de la cobertura general:</p>
             <p>Este seguro ofrece protección ante una variedad de situaciones, incluyendo:</p>
             <ul>
@@ -262,6 +292,21 @@
             </ul>
         </div>
 
+        <!-- Nuevo div: Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="dental" name="excluded_services" value="Dental"> Servicios dentales</li>
+                <li><input type="checkbox" id="vision" name="excluded_services" value="Vision"> Servicios de visión</li>
+                <li><input type="checkbox" id="cosmetic" name="excluded_services" value="Cosmetic"> Cirugías cosméticas</li>
+                <li><input type="checkbox" id="alternative" name="excluded_services" value="Alternative"> Terapias alternativas</li>
+            </ul>
+            <button id="add-extra-services" class="action-button">Agregar servicios extra</button>
+        </div>
+	    <!-- Mensaje dinámico de selección -->
+        <div id="messageSalud" class="message-excluded-service" style="margin-top: 10px;"></div>
+
+        <!-- Lista de opciones de brokers -->
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
@@ -270,6 +315,8 @@
             <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
             <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
         </ul>
+
+        <!-- Botón de chat -->
         <button id="chatButton" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
     </div>
 </div>
@@ -291,7 +338,18 @@
                 <li>Asesoría en planificación patrimonial.</li>
             </ul>
         </div>
-
+		<!-- Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="suicide" name="excluded_services" value="Suicidio">Suicidio</li>
+                <li><input type="checkbox" id="pre_existing" name="excluded_services" value="Preexistente"> Condiciones preexistentes</li>
+                <li><input type="checkbox" id="war" name="excluded_services" value="Guerra">Muerte por guerra o actos de terrorismo</li>
+                <li><input type="checkbox" id="illegal" name="excluded_services" value="Ilegal"> Actividades ilegales</li>
+            </ul>
+            <button id="add-extra-services-life" class="action-button">Agregar servicios extra</button>
+        </div>
+        <div id="messageVida" class="message-excluded-service" style="margin-top: 10px;"></div>
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
@@ -304,6 +362,7 @@
         <button id="chatButtonLife" class="chat-button">Elije tu mejor opción con tu broker favorito</button>
     </div>
 </div>
+
 
 <!-- Modal Seguro de Viajes -->
 <div id="optionsModalViajes" class="modal" style="display: none;">
@@ -323,7 +382,18 @@
                 <li>Evacuación médica de emergencia.</li>
             </ul>
         </div>
-
+		 <!-- Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="preexisting_conditions" name="excluded_services" value="Condiciones Preexistentes"> Condiciones preexistentes</li>
+                <li><input type="checkbox" id="extreme_sports" name="excluded_services" value="Deportes Extremos"> Actividades de deportes extremos</li>
+                <li><input type="checkbox" id="travel_while_sick" name="excluded_services" value="Viajar Enfermo"> Viajar mientras estés enfermo</li>
+                <li><input type="checkbox" id="theft" name="excluded_services" value="Robo"> Robo o pérdida de pertenencias no aseguradas</li>
+            </ul>
+            <button id="add-extra-services-travel" class="action-button">Agregar servicios extra</button>
+        </div>
+        <div id="messageViajes" class="message-excluded-service" style="margin-top: 10px;"></div>
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
@@ -355,7 +425,18 @@
                 <li>Recojo por chofer en caso de intoxicación.</li>
             </ul>
         </div>
-
+		<!-- Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="damage_to_property" name="excluded_services" value="Daño a Propiedad"> Daño a propiedad no asegurada</li>
+                <li><input type="checkbox" id="injuries" name="excluded_services" value="Lesiones Previas"> Lesiones previas no declaradas</li>
+                <li><input type="checkbox" id="overcrowding" name="excluded_services" value="Sobrecupo"> Sobrecupo o falta de permisos</li>
+                <li><input type="checkbox" id="intoxication" name="excluded_services" value="Intoxicación"> Intoxicación por alcohol</li>
+            </ul>
+            <button id="add-extra-services-parties" class="action-button">Agregar servicios extra</button>
+        </div>
+        <div id="messageFiestas" class="message-excluded-service" style="margin-top: 10px;"></div>
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
@@ -387,7 +468,18 @@
                 <li>Protección en actividades como escalada, paracaidismo, surf, entre otros.</li>
             </ul>
         </div>
-
+        <!-- Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="pre-existing_conditions" name="excluded_services" value="Condiciones Preexistentes"> Condiciones preexistentes</li>
+                <li><input type="checkbox" id="non-sanctioned_activities" name="excluded_services" value="Actividades No Sancionadas"> Actividades no sancionadas</li>
+                <li><input type="checkbox" id="intoxication" name="excluded_services" value="Intoxicación"> Intoxicación durante la práctica</li>
+                <li><input type="checkbox" id="racing" name="excluded_services" value="Carreras"> Carreras no autorizadas</li>
+            </ul>
+            <button id="add-extra-services-extreme" class="action-button">Agregar servicios extra</button>
+        </div>
+		<div id="messageExtreme" class="message-excluded-service" style="margin-top: 10px;"></div>
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
@@ -418,7 +510,18 @@
                 <li>Cobertura por extravío o robo de la mascota.</li>
             </ul>
         </div>
-
+		 <!-- Servicios que no cubre el seguro -->
+        <div class="coverage-excluded" style="padding: 10px; margin-top: 20px;">
+            <h2>Servicios que no cubre el seguro</h2>
+            <ul class="excluded-services-list">
+                <li><input type="checkbox" id="pre_existing_conditions" name="excluded_services" value="Condiciones Preexistentes"> Condiciones preexistentes</li>
+                <li><input type="checkbox" id="grooming" name="excluded_services" value="Grooming"> Servicios de grooming</li>
+                <li><input type="checkbox" id="cosmetic_procedures" name="excluded_services" value="Procedimientos Cosméticos"> Procedimientos cosméticos</li>
+                <li><input type="checkbox" id="behavioral_issues" name="excluded_services" value="Problemas de Comportamiento"> Problemas de comportamiento</li>
+            </ul>
+            <button id="add-extra-services-mascotas" class="action-button">Agregar servicios extra</button>
+        </div>
+        <div id="messageMascotas" class="message-excluded-service" style="margin-top: 10px;"></div>
         <ul class="options-list">
             <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>

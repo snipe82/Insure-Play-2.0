@@ -307,6 +307,9 @@
 			max-width: 600px; /* Ancho máximo para el contenido */
 			width: 90%; /* Ancho responsive */
 			position: relative; /* Posición relativa para el cierre */
+			overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido es demasiado grande */
+			max-height: 100vh; /* Limita la altura del modal */
+   
 			}
 
 			.modal-text {
@@ -739,4 +742,87 @@
 
 .private-zone-btn:hover {
     background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}
+
+.modal-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-panel {
+    border: 2px solid green;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.coverage-excluded h2 {
+    color: red;
+    font-size: 20px; /* Este es el tamaño que ya estaba definido en .info-panel h3 */
+    margin-top: 0;
+}
+
+.info-panel h3 {
+    font-size: 20px; /* Mantener el tamaño original de 20px */
+}
+
+.excluded-services-list {
+    list-style-type: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Distribución en 2 columnas */
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+.excluded-services-list li {
+    display: flex;
+    justify-content: left; /* Alineación de checkboxes */
+    align-items: center;
+}
+
+.action-button {
+    background-color: #ff4b4b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.action-button:hover {
+    background-color: #ff3333;
+}
+
+.message-excluded-service {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0066cc; /* Color azul base */
+    margin-top: 10px;
+}
+
+.chat-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.chat-button:hover {
+    background-color: #45a049;
+}
+
+.coverage-excluded {
+    background: linear-gradient(135deg, #fff5f5, #ffeaea); /* Fondo rojo muy claro */
+    border: 2px solid red;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.coverage-excluded h2 {
+    color: red; /* Título en rojo */
 }
