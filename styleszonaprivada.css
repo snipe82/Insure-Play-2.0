@@ -1,5 +1,5 @@
 /* Popup Modal */
-.modal {
+.modalPopup {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modalPopup-content {
     background-color: white;
     padding: 30px;
     border-radius: 10px;

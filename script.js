@@ -331,7 +331,8 @@ function closeCustomModal() {
 
 function openPrivateZone() {
     // Aquí puedes definir la lógica para abrir el popup o redirigir a la nueva página
-   window.open('zonaprivada.htm', 'MiZonaPrivada', 'width=600,height=600,resizable=yes,scrollbars=yes');
+  // window.open('zonaprivada.htm', 'MiZonaPrivada', 'width=600,height=600,resizable=yes,scrollbars=yes');
+  showModalZonaprivada();
 }
 
 
@@ -411,3 +412,26 @@ function showDetailsMicroseguros() {
  alert("¡Un Broker se contactará contigo para explicarte a detalle el microseguros seleccionado!");
  
 }
+
+
+ // Cerrar el popup
+        document.getElementById("close-popup").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+
+        // Mostrar paneles según el menú
+        document.querySelectorAll(".menu a").forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.querySelectorAll(".panel").forEach(panel => {
+                    panel.style.display = "none";
+                });
+                const panelId = this.getAttribute("href").substring(1);
+                document.getElementById(panelId).style.display = "block";
+            });
+        });
+		
+		
+		function showModalZonaprivada() {
+    document.getElementById("popup").style.display = 'flex'; // Muestra el modal
+	}
